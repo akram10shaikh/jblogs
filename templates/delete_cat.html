@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} Delete Cat {% endblock %}
+
+{% block 'content' %}
+
+ <div class="container" align="center">
+<div style="font-size:20px;" class="row mt-2">
+   <div class="col-sm-6" align="left">
+       <a href="{% url 'dashboard' %}" class="btn " style="color:white;background-color:#1d5770;width:100px;">Back</a>
+   </div>
+    <div class="col-sm-6" align="right">
+    {% if request.user.is_authenticated %}
+   <b style="color:#1d5770;"> User :  {{ request.user.username }}</b> <a href="{% url 'log_out' %}"  class="btn " style="color:white;background-color:#1d5770;">Logout</a>
+    {% else %}
+        <a href="{% url 'log_out' %}" style="background-color:#1d5770;color:white;">Login</a>
+    {% endif %}
+    </div>
+
+<div class="container mt-5" align="center" >
+<div class="card" align="center" >
+<div class="card-body mt-5" >
+<h1 style="padding-bottom:50px;">Delete</h1>
+  <h3 align="left"> Do you want to delete the category?</h3><br>
+   <div align="left" style="font-size:20px;">
+    <b>Title :</b> {{ c.title }}<br><br>
+    <b>Url :</b> {{ c.url }}<br><br>
+    <b>Content :</b> {{ c.description | safe }}<br><br>
+
+    </div><br>
+    <a href="{% url 'delete_cat_data' c.cat_id %}" class="btn bg-success">Delete</a><br><br>
+
+
+
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

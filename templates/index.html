@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} J-Blogs {% endblock %}
+
+{% block 'content' %}
+
+
+<h4 style="padding-left:110px;margin-top:50px;color:#1d5770;">Categories</h4>
+<!-- Set up your HTML -->
+
+<div class="owl-carousel" >
+
+    {% for c in cat %}
+
+    <div class="card"  >
+        <div class="img-container">
+            <img src="/media/{{c.image}}" width="100px" height="100px" >
+        </div>
+        <div class="card-content text-center" >
+            <div class="card-title">
+               <b style="color:#1d5770;"> {{ c.title }} </b>
+
+<!--           <p class="truncate">{{ c.description }}</p>-->
+            <div class="container text-center ">
+                <a href="{% url 'cat_data' c.cat_id %}" class="btn" style="background-color:#1d5770;color:white;">VIEW</a>
+
+            </div>
+</div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+<div class="container" ><h1 style="color:#1d5770;">Welcome to the JBlogs </h1><br>
+<p style="font-size:20px;">
+
+Welcome to JBlogs, the ultimate destination for insightful content across a wide array of categories. Whether you're a passionate enthusiast, a curious learner, or simply looking for entertainment, we have something for everyone. Our goal is to provide you with engaging articles, thought-provoking discussions, and expert perspectives that cater to your varied interests. </p>
+</div>
+
+
+<div class="container" ><h1 style="color:#1d5770;">Posts </h1><br>
+<p style="font-size:20px">
+    All the category posts are display below you can read and write the posts in the jblogs
+</p>
+
+<div class="container mt-1">
+      {% for p in page reversed %}
+      <div class="row">
+        <div class="col-sm-8">
+            <h3 style="margin-top:70px;color:#1d5770;">{{ p.title }}</h3>
+            <p>{{ p.content |truncatewords:40 | safe}}</p>
+            <div><a href="{% url 'posts_data' p.post_id %}" class="btn" style="background-color:#1d5770;color:white;">ReadMore..</a></div>
+        </div>
+
+         <div class="col-sm-4 ">
+             <img src="/media/{{ p.image }}" class="img-responsive" alt="Cinque Terre" width="304" height="236" style="margin-top:30px;">
+         </div>
+    </div>
+
+
+    {% endfor %}
+
+</div>
+
+<div class="container text-center" >
+<ul class="pagination pagination-lg" >
+    {% if page.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">Previous</a></li>
+    {% endif %}
+
+    {% for i in page.paginator.page_range %}
+        <li class="page-item {% if page.number == i %}active{% endif %}">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+        </li>
+    {% endfor %}
+
+    {% if page.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page.paginator.num_pages }}">Last</a></li>
+    {% endif %}
+</ul>
+</div>
+
+
+</div>
+{% endblock %}

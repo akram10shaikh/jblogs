@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block 'title %} Dashboard {% endblock %}
+
+
+{% block 'content' %}
+{% load static %}
+<div class="container" align="center">
+<div align="right" style="font-size:20px;" class="mt-2">
+    {% if request.user.is_authenticated %}
+       <b style="padding-right:10px;color:#1d5770;"> User :  {{ request.user.username }}</b> <a href="{% url 'log_out' %}"  class="btn " style="margin-right:20px;color:white;background-color:#1d5770;">Logout</a>
+    {% else %}
+        <a href="{% url 'log_out' %}" style="margin-right:20px;background-color:#1d5770;color:white;">Login</a>
+    {% endif %}
+</div>
+
+     {% if error %}
+       <div class="alert alert-danger">
+           <h4>{{ error }}</h4>
+       </div>
+    {% endif %}
+<div class="container mt-5" align="left">
+    <div class="row">
+    <div class="col-sm-3">
+     <h3 >Category</h3>
+
+        <h4 style="padding-top:10px;" ><a href="{% url 'user_data' %}">Create a Category</a></h4>
+        <h4 style="padding-top:10px;"><a href="{% url 'edit_cat' %}">Edit a Category</a></h4>
+    <h3 style="padding-top:30px;">Post</h3>
+        <h4 style="padding-top:10px;"><a href="{% url 'second_base' %}">Create a Post</a></h4>
+        <h4 style="padding-top:10px;"><a href="{% url 'delete_page' %}">Edit a Post</a></h4>
+
+    </div>
+     <div class="col-sm-9">
+        <h2 >Dashboard</h2>
+         <p style="font-size:20px;">
+        Welcome to the Heart of Diverse Content! Are you ready to dive into a world of captivating articles, informative posts, and creative pieces that span across a multitude of interests? Look no further than the dynamic dashboard of JBlogs! Our dashboard serves as the central hub for all things content, offering an array of categories, user-generated posts, and a seamless navigation experience that caters to every user's preferences. Categories that Suit Your Every Interest
+    Feel free to adapt and modify the example to suit your specific website and dashboard features. Add in relevant visuals and tailor the content to match your brand's voice and style.
+         </p>
+    </div>
+
+    </div>
+
+
+</div>
+
+</div>
+
+{% endblock %}

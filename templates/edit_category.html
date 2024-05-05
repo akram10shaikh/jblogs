@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} Edit {% endblock %}
+
+{% block 'content' %}
+
+  <div class="container" align="center">
+<div style="font-size:20px;" class="row mt-2">
+   <div class="col-sm-6" align="left">
+       <a href="{% url 'dashboard' %}" class="btn " style="color:white;background-color:#1d5770;width:100px;">Back</a>
+   </div>
+    <div class="col-sm-6" align="right">
+    {% if request.user.is_authenticated %}
+   <b style="color:#1d5770;"> User :  {{ request.user.username }}</b> <a href="{% url 'log_out' %}"  class="btn " style="color:white;background-color:#1d5770;">Logout</a>
+    {% else %}
+        <a href="{% url 'log_out' %}" style="background-color:#1d5770;color:white;">Login</a>
+    {% endif %}
+    </div>
+
+
+
+<div class="container mt-5">
+    <div >
+        <h1 align="center">Edit or Delete</h1>
+        <p align="center" style="font-size:20px;" class="alert alert-primary">List of post available in the JBLogs you can edit or delete it just by clicking on it.</p>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Url</th>
+                <th colspan="2">Action</th>
+            </tr>
+            {% for c in cat %}
+            <tr>
+                <td> {{ c.cat_id }}</td>
+            <td> {{ c.title }}</td>
+                <td> {{ c.url }}</td>
+                <td><a href="{% url 'cat_edit' c.cat_id %}">Edit</a>
+                </td><td> <a href="{% url 'delete_cat' c.cat_id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+</div>
+  </div>
+{% endblock %}

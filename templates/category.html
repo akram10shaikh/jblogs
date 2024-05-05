@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} Category {% endblock %}
+
+{% block 'content' %}
+
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-8">
+            <h1 style="color:#1d5770;">{{ cat.title }}</h1>
+                <p> {{ cat.description | safe }}</p>
+        </div>
+        <div class="col-sm-4">
+             <img src="/media/{{ cat.image }}" class="img-responsive" width="400" height="250" >
+        </div>
+    </div>
+</div>
+
+
+
+     <div class="collection container">
+<p style="font-size:20px;color:">Topics you can read in details</p>
+      {% for p in post %}
+        <a href="{% url 'posts_data' p.post_id %}" class="collection-item">{{ p.title }}</a>
+      {% endfor %}
+      </div>
+<br>
+{% endblock %}

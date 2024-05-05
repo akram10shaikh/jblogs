@@ -1,0 +1,38 @@
+
+<script>
+    $(document).ready(function(){
+        $('.sidenav')sidenav();
+        });
+</script>
+
+
+<style>
+    .nav-wrapper{
+        padding: 0px 50px
+    }
+    a {
+    text-decoration:None;
+
+    }
+</style>
+{% load static %}
+<nav class="nav-wrapper" style="background-color:#1d5770;">
+    <a href="/" class="brand-logo" >J-BLOGS</a>
+    <a href="" class="sidenav-trigger" data-target="mobile-menu">
+        <i class="material-icons">menu</i>
+    </a>
+    <ul class="right hide-on-med-and-down" style="background-color:#1d5770;">
+        <li><a href="{% url 'cats' %}" style="font-size:25px;">Categories</a></li>
+        <li><a href="/" style="font-size:25px;">Posts</a></li>
+        <li><a href="{% url 'login1' %}" style="font-size:25px;">Login</a></li>
+        <li><a href="{% url 'about' %}" style="font-size:25px;">About</a></li>
+
+    </ul>
+</nav>
+    <ul class="sidenav" id="mobile-menu">
+        <li><a href="{% url 'cats' %}">Categories</a></li>
+        <li><a href="/">Posts</a></li>
+        <li><a href="{% url 'login1' %}">Login</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+    </ul>
+

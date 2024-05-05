@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block 'title %} login {% endblock %}
+
+{% block 'content' %}
+{% load static %}
+<div class="container mt-5" align="center"  >
+    <form action="{% url 'login_user' %}" method='POST'>
+        {% csrf_token %}
+        <div class="container mt-5">
+
+
+  <div class="card" >
+    <div class="card-body mt-5" >
+        <h2 class="card-title" style="font-size:30px;"><b>Login</b></h2>
+
+        <div class="row mt-5">
+                <div class="col-sm-12" align="center">
+                    Username : <input type="text" name="user" style="width:200px" align="center"><br>
+                </div>
+                 <div class="col-sm-12">
+
+                    Password : <input type="password" name="password" style="width:200px">
+                </div>
+
+            </div>
+        <div  align="center">
+      <input type="submit" value="login" class="btn" style="background-color:#1d5770;color:white;width:120px;">
+    </div>
+          <div> <h5>
+          {% if msg %}
+                {{ msg }}
+          {% endif %}
+      </h5></div>
+        </div>
+  </div>
+
+
+        </div></form>
+
+</div>
+
+
+
+{% endblock %}

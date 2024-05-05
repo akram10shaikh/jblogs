@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} Posts {% endblock %}
+
+{% block 'content' %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-9">
+            <div>
+                <h1 style="color:#1d5770;">{{ posts.title }}</h1>
+             </div>
+            <div>
+                <p> {{ posts.content | safe }}</p>
+            </div>
+            <div>
+                <img src="/media/{{ posts.image }}" class="img-responsive" style="width:100%;height:500px;object-fit:cover;">
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div><h2 align="center" style="color:#1d5770;">Categories</h2></div>
+        {% for c in cat %}
+
+
+        <div class="card"  >
+            <div class="img-container">
+                <img src="/media/{{c.image}}" width="100%" >
+            </div>
+            <div class="card-content text-center" >
+                <b style="font-size:13px;color:#1d5770;" > {{ c.title }} </b>
+
+         <p class="truncate">{{ c.description }}</p>
+                <div class="container text-center ">
+                    <a href="{% url 'cat_data' c.cat_id %}" class="btn" style="background-color:#1d5770;color:white;">VIEW</a>
+                </div>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+
+        </div>
+
+        </div>
+</div>
+
+
+{% endblock %}
